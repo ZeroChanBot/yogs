@@ -177,7 +177,7 @@ router.use(favicon(__path + "/views/favicon.ico"));
 
 const listkey = ["Fxc7", "manogay"];
 
-router.post("/apikey", async (req, res, next) => {
+router.post("/addapikey", async (req, res, next) => {
   const key = req.query.key;
   if(listkey.includes(key)) {
     res.json({
@@ -2341,7 +2341,31 @@ router.get('/asupan', async (req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
- 
+
+router.get('/asupan/santuy', async (req, res, next) => {
+        var Apikey = req.query.apikey
+            
+	if(!Apikey) return res.json(loghandler.notparam)
+    if(listkey.includes(Apikey)) {
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/binjaicity/warga62/master/santuy.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+             	creator: `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+
 router.get("/maker/nulis", async (req, res, next) => {
   
   apikey = req.query.apikey;
