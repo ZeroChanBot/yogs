@@ -18,7 +18,7 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-        	<img src="https://telegra.ph/Bini-Yogga-08-06">
+        	<img src="https://h.top4top.io/p_2044u37lb0.jpg">
         </div>
         <div class="sidebar-brand-text mx-3">YogGanz API</div>
       </a>
@@ -448,7 +448,7 @@ aria-valuemin="0" aria-valuemax="100"></div>
 <li class="nav-item dropdown no-arrow">
   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
 aria-haspopup="true" aria-expanded="false">
-<img class="img-profile rounded-circle" src="https://telegra.ph/Bini-Yogga-08-06" style="max-width: 60px">
+<img class="img-profile rounded-circle" src="https://h.top4top.io/p_2044u37lb0.jpg" style="max-width: 60px">
 <span class="ml-2 d-none d-lg-inline text-white small">Mr.Yogga</span>
   </a>
   </div>
@@ -509,26 +509,22 @@ aria-haspopup="true" aria-expanded="false">
               </div>
             </div>
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Count Down Idul Fitri</div>
-                      <br>
-                      <div class="h6 mb-0 font-weight-bold text-gray-600 text-uppercase">
-                        <span class="text-danger" id="hari">00</span> Hari 
-                        <span class="text-danger" id="jam">00</span> Jam 
-                        <span class="text-danger" id="menit">00</span> Menit 
-                        <span class="text-danger" id="detik">00</span> Detik
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                     <i class="fas fa-star-and-crescent fa-2x text-primary"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div class="card h-100">
+  <div class="card-body">
+  <div class="row align-items-center">
+  <div class="col mr-2">
+  <div class="text-xs font-weight-bold text-uppercase mb-1">Waktu</div>
+ <div class="h5 mb-0 font-weight-bold text-gray-800" id='jam' ></div>
+  <div class="mt-2 mb-0 text-muted text-xs">
+  </div>
+  </div>
+  <div class="col-auto">
+  <b><i class="fas fa-clock fa-2x text-primary"></i>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
         <!---Container Fluid-->
       <!-- Footer -->
      <form action="/api/cekapikey">
@@ -545,16 +541,6 @@ aria-haspopup="true" aria-expanded="false">
              <span class="icon text-white-50">
               <i class="fas fa-check"></i>
              </span>
-             
-             <!-- MARINGNGERRANG GUESTBOOK START -->
-            <script>
-window['CboxReady'] = function (Cbox) {
-	Cbox('button', '5-927387-xetcpc');
-}
-</script>
-<script src="https://static.cbox.ws/embed/1.js" async></script>
-	         <!-- MARINGNGERRANG GUESTBOOK END -->
-             
              <span class="text">Check</span>
             </button>
          </div>
@@ -608,5 +594,22 @@ window['CboxReady'] = function (Cbox) {
   <script src="vendor/chart.js/Chart.min.js"></script>
   <script src="js/demo/chart-area-demo.js"></script>  
 </body>
-
+<script type="text/javascript">
+// 1 detik = 1000
+window.setTimeout("waktu()",1000);  
+function waktu() {   
+var tanggal = new Date();  
+setTimeout("waktu()",1000);  
+document.getElementById("jam").innerHTML = tanggal.getHours()+":"+tanggal.getMinutes()+":"+tanggal.getSeconds();
+}
+</script>
+<!-- MARINGNGERRANG GUESTBOOK START -->
+            <script>
+window['CboxReady'] = function (Cbox) {
+	Cbox('button', '5-927387-r0nb56');
+}
+</script>
+<script src="https://static.cbox.ws/embed/1.js" async></script>
+	         <!-- MARINGNGERRANG GUESTBOOK END -->
+             
 </html>
