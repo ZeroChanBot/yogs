@@ -351,7 +351,7 @@
               <li class="breadcrumb-item active" aria-current="page">Beranda</li>
             </ol>
           </div>
-<footer class="sticky-footer bg-white">
+<footer class="sticky-footer bg-dark">
   <div class="col-lg-6">
        <div class="card mb-4">
         <div class="card-header py-3">
@@ -363,20 +363,6 @@
                 </div>
               </div> 
             </div>
-      <div class="col-lg-6">
-       <div class="card mb-4">
-        <div class="card-header py-3">
-         <div class="card-body">
-          <div class="row align-item-center">
-           <div id="demo" class="alert alert-info alert-dismissible" role="alert">
-            <div id="Statistic"></div>
-             <span id="tgl">00</span> - <span id="bln">00</span> - <span id="thn"></span>
-            </div>
-           </div>
-          </div>
-         </div> 
-        </div>
-       </div>
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100">
                 <div class="card-body">
@@ -393,27 +379,32 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Count Down Idul Fitri</div>
-                      <br>
-                      <div class="h6 mb-0 font-weight-bold text-gray-600 text-uppercase">
-                        <span class="text-danger" id="hari">00</span> Hari 
-                        <span class="text-danger" id="jam">00</span> Jam 
-                        <span class="text-danger" id="menit">00</span> Menit 
-                        <span class="text-danger" id="detik">00</span> Detik
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                     <i class="fas fa-star-and-crescent fa-2x text-primary"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <script type="text/javascript">
+// 1 detik = 1000
+window.setTimeout("waktu()",1000);  
+function waktu() {   
+var tanggal = new Date();  
+setTimeout("waktu()",1000);  
+document.getElementById("jam").innerHTML = tanggal.getHours()+":"+tanggal.getMinutes()+":"+tanggal.getSeconds();
+}
+</script>
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card h-100">
+  <div class="card-body">
+  <div class="row align-items-center">
+  <div class="col mr-2">
+  <div class="text-xs font-weight-bold text-uppercase mb-1">Waktu</div>
+ <div class="h5 mb-0 font-weight-bold text-gray-800" id='jam' ></div>
+  <div class="mt-2 mb-0 text-muted text-xs">
+  </div>
+  </div>
+  <div class="col-auto">
+  <b><i class="fas fa-clock fa-2x text-primary"></i>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
         <!---Container Fluid-->
       <!-- Footer -->
      <form action="/api/cekapikey">
@@ -459,7 +450,7 @@ window['CboxReady'] = function (Cbox) {
       </div>
       <div class="copyright text-center my-auto">
      <p class="card-text text-shadow">Yoga, 21 tahun<br></p><div class="text-xs font-weight-bold text-uppercase">
-       <h6 class="text-uppercase">Thanks To :</h6><br>
+       <h6 class="text-uppercase">Thanks To :</h6>
        Semua Yang Terlibat<br>Di Rest Api Ini
      </div>
      </div>
@@ -470,7 +461,7 @@ window['CboxReady'] = function (Cbox) {
     </div>
   <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2021 - Owner By
+            <span>Copyright &copy; 2021 - Developer By
               <b>YogGanz</b>
             </span>
           </div>
@@ -485,7 +476,7 @@ window['CboxReady'] = function (Cbox) {
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-  <script async src="https://api.countapi.xyz/hit/api-fxc7.herokuapp.com/visits?callback=cb"></script>
+  <script async src="https://api.countapi.xyz/hit/yog-apikey.herokuapp.com/visits?callback=cb"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
