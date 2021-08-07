@@ -2347,6 +2347,72 @@ router.get('/asupan/tiktok', async (req, res, next) => {
 res.json(loghandler.invalidKey)
 }
 })
+router.get('/asupan/ukhty', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://raw.githubusercontent.com/zeeoneofc/warga62/master/ukhty.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+             	creator: `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/asupan/hijab', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://raw.githubusercontent.com/zeeoneofc/warga62/master/hijaber.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+             	creator: `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/asupan/cecan', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://raw.githubusercontent.com/zeeoneofc/warga62/master/cecan.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+             	creator: `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
 router.get('/asupan', async (req, res, next) => {
   Apikey = req.query.apikey;
   
