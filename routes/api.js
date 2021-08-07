@@ -2521,7 +2521,6 @@ router.get('/maker/harta-tahta', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-
 router.get('/maker/skatch', async(req, res, next) => {
   const apikey = req.query.apikey;
   const url = req.query.url;
@@ -2536,48 +2535,48 @@ router.get('/maker/skatch', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/serti/sertiepep', async(req, res, next) => {
-  apikey = req.query.apikey;
-  text = req.query.text;
-  if(!text) return res.json(loghandler.nottext)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)) {
-    let hasil = 'https://textmaker-api-zahirr.herokuapp.com/api/special/sertifikatepep?text='+ text +'' 
-    data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/nulis.jpeg', data)
-    res.sendFile(__path +'/tmp/nulis.jpeg')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-})
 router.get('/maker/transformer', async(req, res, next) => {
-  apikey = req.query.apikey;
+  Apikey = req.query.apikey;
   text = req.query.text;
-  if(!text) return res.json(loghandler.nottext)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)) {
-    let hasil = 'https://yog-ganz.herokuapp.com/api/maker/special/epep?text='+ text +'&apikey=YogGanz' 
-    data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/nulis.jpeg', data)
-    res.sendFile(__path +'/tmp/nulis.jpeg')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://yog-ganz.herokuapp.com/api/maker/special/epep?text=${text}&apikey=YogGanz`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
 })
-router.get('/maker/tololserti', async(req, res, next) => {
-  const apikey = req.query.apikey;
-  const text = req.query.text;
-  if(!text) return res.json(loghandler.noturl)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)){
-  let hasil = `https://lolhuman.herokuapp.com/api/toloserti?apikey=muzharzain&name=${text}`
-  data = await fetch(hasil).then(v => v.buffer())
-         await fs.writeFileSync(__path +'/tmp/tololserti.jpeg', data)
-        res.sendFile(__path+'/tmp/tololserti.jpeg')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-});
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/serti/sertiepep', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  text = req.query.text;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://textmaker-api-zahirr.herokuapp.com/api/special/sertifikatepep?text=${text}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
 router.get('/maker/emoji2png', async(req, res, next) => {
   const apikey = req.query.apikey;
   const Emoji = req.query.text;
