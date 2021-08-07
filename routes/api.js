@@ -2536,13 +2536,13 @@ router.get('/maker/skatch', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/maker/transformer', async(req, res, next) => {
+router.get('/serti/sertiepep', async(req, res, next) => {
   apikey = req.query.apikey;
   text = req.query.text;
   if(!text) return res.json(loghandler.nottext)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)) {
-    let hasil = 'https://yog-ganz.herokuapp.com/api/maker/special/transformer?text='+ text +'&apikey=YogGanz' 
+    let hasil = 'https://textmaker-api-zahirr.herokuapp.com/api/special/sertifikatepep?text='+ text +'' 
     data = await fetch(hasil).then(v => v.buffer())
     await fs.writeFileSync(__path +'/tmp/nulis.jpeg', data)
     res.sendFile(__path +'/tmp/nulis.jpeg')
@@ -2550,7 +2550,7 @@ router.get('/maker/transformer', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 })
-router.get('/serti/sertiepep', async(req, res, next) => {
+router.get('/maker/transformer', async(req, res, next) => {
   apikey = req.query.apikey;
   text = req.query.text;
   if(!text) return res.json(loghandler.nottext)
