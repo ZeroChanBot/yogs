@@ -2566,7 +2566,7 @@ router.get('/serti/sertiepep', async(req, res, next) => {
 });
 router.get('/maker/tololserti', async(req, res, next) => {
   const apikey = req.query.apikey;
-  const url = req.query.url;
+  const text = req.query.text;
   if(!text) return res.json(loghandler.noturl)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
