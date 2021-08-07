@@ -2536,6 +2536,20 @@ router.get('/maker/skatch', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+router.get('/serti/sertiepep', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!text) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://yog-ganz.herokuapp.com/api/maker/special/epep?text=${text}&apikey=YogGanz`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/sertiepep.jpeg', data)
+        res.sendFile(__path+'/tmp/sertiepep.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 router.get('/maker/tololserti', async(req, res, next) => {
   const apikey = req.query.apikey;
   const url = req.query.url;
