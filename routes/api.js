@@ -2536,50 +2536,34 @@ router.get('/maker/skatch', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/maker/transformer', async (req, res, next) => {
+router.get('/maker/transformer', async(req, res, next) => {
   const apikey = req.query.apikey;
   const text = req.query.text;
-  if(!url) return res.json(loghandler.noturl)
+  if(!text) return res.json(loghandler.noturl)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-    if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})
-
-       fetch(encodeURI(`https://textmaker-api-zahirr.herokuapp.com/api/special/transformer?text=${text}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-             	author: 'Yogga',
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.invalidKey)
-})
-})
-
-
-router.get('/serti/sertiepep', async (req, res, next) => {
-        const apikey = req.query.apikey;
+  let hasil = `https://yog-ganz.herokuapp.com/api/maker/special/transformer?text=${text}&apikey=YogGanz`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/transformer.jpeg', data)
+        res.sendFile(__path+'/tmp/transformer.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/serti/sertiepep', async(req, res, next) => {
+  const apikey = req.query.apikey;
   const text = req.query.text;
-  if(!url) return res.json(loghandler.noturl)
+  if(!text) return res.json(loghandler.noturl)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-    if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter text"})
-
-       fetch(encodeURI(`https://textmaker-api-zahirr.herokuapp.com/api/special/sertifikatepep?text=${text}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-             	author: 'Yogga',
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.invalidKey)
-})
-})
+  let hasil = `https://yog-ganz.herokuapp.com/api/maker/special/epep?text=${text}&apikey=YogGanz`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/sertiepep.jpeg', data)
+        res.sendFile(__path+'/tmp/sertiepep.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 router.get('/maker/tololserti', async(req, res, next) => {
   const apikey = req.query.apikey;
   const url = req.query.url;
