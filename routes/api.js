@@ -2330,16 +2330,23 @@ router.get('/asupan/tiktok', async (req, res, next) => {
   
   if(!Apikey) return res.json(loghandler.notparam)
   if(listkey.includes(Apikey)) {
-    const url = JSON.parse(fs.readFileSync(__path +'/data/tiktok.json'));
-    const Url = url[Math.floor(Math.random() * url.length)];
-    let hasil = Url.url;
-    data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/asupan.mp4', data)
-    res.sendFile(__path +'/tmp/asupan.mp4')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-});
+    fetch(encodeURI(`https://raw.githubusercontent.com/zeeoneofc/Asupan/main/video/tiktok.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+             	creator: `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
 router.get('/asupan', async (req, res, next) => {
   Apikey = req.query.apikey;
   
