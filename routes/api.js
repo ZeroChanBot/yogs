@@ -2330,9 +2330,9 @@ router.get('/asupan/tiktok', async (req, res, next) => {
   
   if(!Apikey) return res.json(loghandler.notparam)
   if(listkey.includes(Apikey)) {
-    const asupan = JSON.parse(fs.readFileSync(__path +'/tiktok.json'));
-    const Asupan = asupan[Math.floor(Math.random() * asupan.length)];
-    let hasil = Asupan.asupan;
+    const url = JSON.parse(fs.readFileSync(__path +'/data/tiktok.json'));
+    const Url = url[Math.floor(Math.random() * url.length)];
+    let hasil = Url.url;
     data = await fetch(hasil).then(v => v.buffer())
     await fs.writeFileSync(__path +'/tmp/asupan.mp4', data)
     res.sendFile(__path +'/tmp/asupan.mp4')
