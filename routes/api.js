@@ -165,7 +165,7 @@ loghandler = {
     error: {
         status: false,
         creator: `${creator}`,
-        message: 'emror bruh'
+        message: 'error gan'
     }
 }
 
@@ -2325,7 +2325,21 @@ router.get('/maker/dadu', async (req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-
+router.get('/asupan/tiktok', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const asupan = JSON.parse(fs.readFileSync(__path +'/tiktok.json'));
+    const Asupan = asupan[Math.floor(Math.random() * asupan.length)];
+    let hasil = Asupan.asupan;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/asupan.mp4', data)
+    res.sendFile(__path +'/tmp/asupan.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 router.get('/asupan', async (req, res, next) => {
   Apikey = req.query.apikey;
   
