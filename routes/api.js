@@ -2520,7 +2520,7 @@ router.get('/trigger', async(req, res, next) => {
 router.get('/maker/ttp', async(req, res, next) => {
   const apikey = req.query.apikey;
   const text = req.query.text;
-  if(!url) return res.json(loghandler.noturl)
+  if(!text) return res.json(loghandler.nottext)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
   let hasil = `https://api.xteam.xyz/ttp?file&text=${text}`
@@ -2534,7 +2534,7 @@ router.get('/maker/ttp', async(req, res, next) => {
 router.get('/maker/attp', async(req, res, next) => {
   const apikey = req.query.apikey;
   const text = req.query.text;
-  if(!url) return res.json(loghandler.noturl)
+  if(!text) return res.json(loghandler.nottext)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
   let hasil = `https://api.xteam.xyz/attp?file&text=${text}`
@@ -2573,7 +2573,25 @@ router.get('/passed', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/bokep', async (req, res, next) => {
+router.get('/meme', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const text = req.query.text;
+  const text2 = req.query.text2;
+  const url = req.query.url;
+  if(!text) return res.json(loghandler.nottext)
+  if(!text2) return res.json(loghandler.nottext2)
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://api.memegen.link/images/custom/${text1}/${text2}.png?background=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/meme.jpeg', data)
+        res.sendFile(__path+'/tmp/meme.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/asupan/bokep', async (req, res, next) => {
   Apikey = req.query.apikey;
   if(!Apikey) return res.json(loghandler.notparam)
   if(listkey.includes(Apikey)) {
