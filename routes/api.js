@@ -2535,6 +2535,71 @@ router.get('/maker/skatch', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+
+///FITUR TAMBAHAN
+
+router.get('/trigger', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://some-random-api.ml/canvas/triggered?avatar=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/trigger.gif', data)
+        res.sendFile(__path+'/tmp/trigger.gif')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/wasted', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://some-random-api.ml/canvas/wasted?avatar=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/wasted.jpeg', data)
+        res.sendFile(__path+'/tmp/wasted.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/passed', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://some-random-api.ml/canvas/passed?avatar=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/passed.jpeg', data)
+        res.sendFile(__path+'/tmp/passed.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get('/maker/transformer', async(req, res, next) => {
   Apikey = req.query.apikey;
   text = req.query.text;
