@@ -2496,7 +2496,7 @@ router.get('/maker/attp', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)) {
-  let hasil = 'https://alpin-api-2021.herokuapp.com/api/attp?text='+ text +'&apikey=alpin1'
+  let hasil = `https://api.xteam.xyz/attp?file&text=${encodeURIComponent(${text})}`
   data = await fetch(hasil).then(v => v.buffer())
   await fs.writeFileSync(__path +'/tmp/attp.gif', data)
   res.sendFile(__path +'/tmp/attp.gif')
@@ -2540,7 +2540,7 @@ router.get('/maker/transformer', async(req, res, next) => {
   text = req.query.text;
   if(!Apikey) return res.json(loghandler.notparam)
   if(listkey.includes(Apikey)) {
-    fetch(encodeURI(`https://yog-ganz.herokuapp.com/api/maker/special/epep?text=${text}&apikey=YogGanz`))
+    fetch(encodeURI(`https://textmaker-api-zahirr.herokuapp.com/api/special/transformer?text=${text}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
