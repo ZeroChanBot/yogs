@@ -337,7 +337,7 @@ API Features
   <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
 <i class="fa fa-bars text-dark"></i>
   </button>
-  <span class="text-danger mr-2"><b>New</b></span>
+  <span class="text-dark mr-2"><blink><--- menu</blink></span>
   <ul class="navbar-nav ml-auto">
 <li class="nav-item dropdown no-arrow">
   <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
@@ -1019,6 +1019,46 @@ var tanggal = new Date();
 setTimeout("waktu()",1000);  
 document.getElementById("jam").innerHTML = tanggal.getHours()+":"+tanggal.getMinutes()+":"+tanggal.getSeconds();
 }
+.blink {
+font-family: 'New Rocker',cursive;
+-webkit-animation-name: farhan;
+-webkit-animation-duration: 2s;
+-webkit-animation-timing-function: linear;
+-webkit-animation-iteration-count: infinite;
+
+-moz-animation-name: farhan;
+-moz-animation-duration: 1s;
+-moz-animation-timing-function: linear;
+-moz-animation-iteration-count: infinite;
+
+ animation-name: farhan;
+ animation-duration: 1s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+@-moz-keyframes farhan {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+ }
+
+@-webkit-keyframes farhan {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+ }
+
+@keyframes farhan {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+ }
+ .text-success {
+   color: #fff;
+   font-size: 25px;
+   font-family: 'Grenze Gotisch', cursive;
+ }
 </script>
 <!-- MARINGNGERRANG GUESTBOOK START -->
 <script>
