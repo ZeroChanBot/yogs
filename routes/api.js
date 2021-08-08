@@ -2470,41 +2470,6 @@ router.get("/maker/nulis", async (req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 })
-
-router.get('/maker/ttp', async (req, res, next) => {
-
-  Apikey = req.query.apikey;
-  if (!req.query.text) return res.json({ status: 404, error: 'masukkan parameter text'})
-  if(!Apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(Apikey)) {
-  random = new Date
-data = await fetch(`https://api.areltiyan.site/sticker_maker?text=${encodeURIComponent(req.query.text)}`).then(v => v.json())
-         base64 = data.base64
-         var buffer = base64.slice(22)
-         await fs.writeFileSync(__path +`/tmp/ttp.png`, buffer, 'base64')
-        res.sendFile(__path+'/tmp/ttp.png')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-});
-
-router.get('/maker/attp', async(req, res, next) => {
-
-  const text = req.query.text;
-  const apikey = req.query.apikey;
-  if(!text) return res.json(loghandler.nottext)
-  if(!apikey) return res.json(loghandler.notparam)
-  
-  if(listkey.includes(apikey)) {
-  let hasil = 'https://alpin-api-2021.herokuapp.com/api/attp?text='+ text +'&apikey=alpin1'
-  data = await fetch(hasil).then(v => v.buffer())
-  await fs.writeFileSync(__path +'/tmp/attp.gif', data)
-  res.sendFile(__path +'/tmp/attp.gif')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-})
-
 router.get('/maker/harta-tahta', async(req, res, next) => {
   const text = req.query.text;
   const apikey = req.query.apikey;
@@ -2552,6 +2517,34 @@ router.get('/trigger', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+router.get('/maker/ttp', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const text = req.query.text;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://api.xteam.xyz/ttp?file&text=${text}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/ttp.jpeg', data)
+        res.sendFile(__path+'/tmp/ttp.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/maker/attp', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const text = req.query.text;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://api.xteam.xyz/attp?file&text=${text}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/attp.gif', data)
+        res.sendFile(__path+'/tmp/attp.gif')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 router.get('/wasted', async(req, res, next) => {
   const apikey = req.query.apikey;
   const url = req.query.url;
@@ -2580,6 +2573,21 @@ router.get('/passed', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+router.get('/bokep', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const ken = ['https://telegra.ph/file/7d7c3abc0300a502b6ddc.mp4','https://telegra.ph/file/47d99b1766277fe7f3561.mp4','https://telegra.ph/file/93f92ae34fe0ac177e31d.mp4','https://telegra.ph/file/356055da67744deed290a.mp4','https://telegra.ph/file/8c76164328248b71ba7e4.mp4','https://telegra.ph/file/ece7a2ef720d08d9f52d1.mp4','https://telegra.ph/file/b9efc0dc7153593a1ea4b.mp4','https://telegra.ph/file/9141f06394a07d71dfd4c.mp4','https://telegra.ph/file/e4903cf5a2056953c266e.mp4','https://telegra.ph/file/4ae639be8740431780c73.mp4','https://telegra.ph/file/a6d50bba2d05c0c08a585.mp4','https://telegra.ph/file/db75cf4815f6445400a00.mp4','https://telegra.ph/file/0ad246d4db1f1cf5d61d0.mp4','https://telegra.ph/file/e660a2776c4b6700c4883.mp4','https://telegra.ph/file/acdf3147dd3bc73802b90.mp4','https://telegra.ph/file/532274df4749fa2582765.mp4']
+    const ntu = ken[Math.floor(Math.random() * (ken.length))]
+    let hasil = ntu.ken;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/bokep.mp4', data)
+    res.sendFile(__path +'/tmp/bokep.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+
 
 
 
