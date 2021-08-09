@@ -2592,13 +2592,13 @@ router.get('/meme', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/asupan/bokep', async (req, res, next) => {
+router.get('/bokep', async (req, res, next) => {
   Apikey = req.query.apikey;
   if(!Apikey) return res.json(loghandler.notparam)
   if(listkey.includes(Apikey)) {
-    const tu = JSON.parse(fs.readFileSync(__path +'/data/bokep.json'));
-    const Ken = tu[Math.floor(Math.random() * tu.length)];
-    let hasil = Ken.tu;
+    const bokep = JSON.parse(fs.readFileSync(__path +'/data/bokep.json'));
+    const Bokep = bokep[Math.floor(Math.random() * bokep.length)];
+    let hasil = Bokep.bokep;
     data = await fetch(hasil).then(v => v.buffer())
     await fs.writeFileSync(__path +'/tmp/bokep.mp4', data)
     res.sendFile(__path +'/tmp/bokep.mp4')
