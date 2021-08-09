@@ -1134,82 +1134,80 @@ router.get('/search/image', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 })
-router.get('/cyberspace', async (req, res, next) => {
-    Apikey = req.query.apikey
-            
-	if(!Apikey) return res.json(loghandler.notparam)
-	if(listkey.includes(Apikey)){
+router.get('/cyber', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const cyber = JSON.parse(fs.readFileSync(__path +'/data/cyber.json'));
+    const Cyber = cyber[Math.floor(Math.random() * cyber.length)];
+    let hasil = Cyber.cyber;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/cyber.mp4', data)
+    res.sendFile(__path +'/tmp/cyber.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 
-  const Cc = JSON.parse(fs.readFileSync(__path +'/data/CyberSpace.json'));
-  const randCc = Cc[Math.floor(Math.random() * Cc.length)]
-  let hasil = randCc.Cc;
-  data = await fetch(hasil).then(v => v.buffer())
-  await fs.writeFileSync(__path +'/tmp/CyberSpace.jpeg', data)
-  res.sendFile(__path +'/tmp/CyberSpace.jpeg')
-} else {
-res.json(loghandler.invalidKey)
-}
-})
-
-router.get('/teknologi', async (req, res, next) => {
-    Apikey = req.query.apikey;
-	if(!Apikey) return res.json(loghandler.notparam)
-	if(listkey.includes(Apikey)){
-const Techno = JSON.parse(fs.readFileSync(__path +'/data/Technology.json'))
-const randTech = Techno[Math.floor(Math.random() * Techno.length)]
-let hasil = randTech.Techno;
-data = await fetch(hasil).then(v => v.buffer())
-await fs.writeFileSync(__path +'/tmp/Technology.jpeg', data)
-res.sendFile(__path +'/tmp/Technology.jpeg')
-} else {
-res.json(loghandler.invalidKey)
-}
-})
+router.get('/techno', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const techno = JSON.parse(fs.readFileSync(__path +'/data/techno.json'));
+    const Techno = techno[Math.floor(Math.random() * techno.length)];
+    let hasil = Techno.techno;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/techno.mp4', data)
+    res.sendFile(__path +'/tmp/techno.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 
 router.get('/muslim', async (req, res, next) => {
-    Apikey = req.query.apikey     
-	if(!Apikey) return res.json(loghandler.notparam)
-	if(listkey.includes(Apikey)){
-  const Muslim = JSON.parse(fs.readFileSync(__path +'/data/Islamic.json'));
-  const randMuslim = Muslim[Math.floor(Math.random() * Muslim.length)];
-  let hasil = randMuslim.Muslim;
-  data = await fetch(hasil).then(v => v.buffer())
-  await fs.writeFileSync(__path +'/tmp/Islamic.jpeg', data)
-  res.sendFile(__path +'/tmp/Islamic.jpeg');
-} else {
-res.json(loghandler.invalidKey)
-}
-})
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const muslim = JSON.parse(fs.readFileSync(__path +'/data/muslim.json'));
+    const Muslim = muslim[Math.floor(Math.random() * muslim.length)];
+    let hasil = Muslim.muslim;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/muslim.mp4', data)
+    res.sendFile(__path +'/tmp/muslim.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 
-router.get('/programming', async (req, res, next) => {
-    Apikey = req.query.apikey            
-	if(!Apikey) return res.json(loghandler.notparam)
-	if(listkey.includes(Apikey)){
-  const Progam = JSON.parse(fs.readFileSync(__path +'/data/Programming.json'));
-  const randProgam = Progam[Math.floor(Math.random() * Progam.length)];
-  let hasil = randProgam.Progam;
-  data = await fetch(hasil).then(v => v.buffer())
-  await fs.writeFileSync(__path +'/tmp/Programming.jpeg', data)
-  res.sendFile(__path +'/tmp/Programming.jpeg')
-} else {
-res.json(loghandler.invalidKey)
-}
-})
+router.get('/progam', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const progam = JSON.parse(fs.readFileSync(__path +'/data/progam.json'));
+    const Progam = progam[Math.floor(Math.random() * progam.length)];
+    let hasil = Progam.progam;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/progam.mp4', data)
+    res.sendFile(__path +'/tmp/progam.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 
-router.get('/pegunungan', async (req, res, next) => {
-    Apikey = req.query.apikey           
-	if(!Apikey) return res.json(loghandler.notparam)
-	if(listkey.includes(Apikey)){
-  const Mount = JSON.parse(fs.readFileSync(__path +'/data/Mountain.json'));
-  const randMount = Mount[Math.floor(Math.random() * Mount.length)];
-  let hasil = randMount.Mount;
-  data = await fetch(hasil).then(v => v.buffer())
-  await fs.writeFileSync(__path +'/tmp/Mountain.jpeg', data)
-  res.sendFile(__path+ '/tmp/Mountain.jpeg');
-} else {
-res.json(loghandler.invalidKey)
-}
-})
+router.get('/gunung', async (req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    const gunung = JSON.parse(fs.readFileSync(__path +'/data/gunung.json'));
+    const Gunung = gunung[Math.floor(Math.random() * gunung.length)];
+    let hasil = Gunung.gunung;
+    data = await fetch(hasil).then(v => v.buffer())
+    await fs.writeFileSync(__path +'/tmp/gunung.mp4', data)
+    res.sendFile(__path +'/tmp/gunung.mp4')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 
 
 router.get('/random/quotes/muslim', async (req, res, next) => {
