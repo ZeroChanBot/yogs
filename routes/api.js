@@ -1605,41 +1605,6 @@ res.json(loghandler.invalidKey)
 }
 })
 
-router.get('/anime/loli', async(req, res, next) => {
-    var apikey = req.query.apikey
-    if (!apikey) return res.json(loghandler.notparam)
-    if(listkey.includes(apikey)){
-    try {
-        var options = {
-            url: "http://results.dogpile.com/serp?qc=images&q= " + "Loli",
-            method: "GET",
-            headers: {
-                "Accept": "text/html",
-                "User-Agent": "Chrome"
-            }
-        }
-        request(options, function(error, response, responseBody) {
-            if (error) return
-
-            $ = cheerio.load(responseBody)
-            var links = $(".image a.link")
-            var cari = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr("href"))
-            if (!cari.length) return
-            var hasil = cari[Math.floor(Math.random() * cari.length)]
-        res.json({
-              status: true,
-              code: 200,
-              creator: `${creator}`,
-              result: hasil
-            })
-        })
-    } catch (e) {}
-    } else {
-      res.json(loghandler.invalidKey)
-    }
-});
-
-
 router.get('/anime/manga', async (req, res, next) => {
         var Apikey = req.query.apikey,
 	    search = req.query.search
@@ -2631,6 +2596,289 @@ router.get('/bokep', async (req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+router.get('/cersex', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/cersex`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/cerpen', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/cerpen`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/tebakbendera', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/tebak-bendera`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/fisheye', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/fisheye-image?image_url=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/fisheye.jpeg', data)
+        res.sendFile(__path+'/tmp/fisheye.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/scary', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/scary-gif?image_url=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/fisheye.gif', data)
+        res.sendFile(__path+'/tmp/fisheye.gif')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/petir', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!url) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/lightning?image_url=${url}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/petir.gif', data)
+        res.sendFile(__path+'/tmp/petir.gif')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/quotesimage', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/quotes-image`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/quotes.jpeg', data)
+        res.sendFile(__path+'/tmp/quotes.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/random/pantun', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/random_pantun`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/artimimpi', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  query = req.query.search
+  if(!query) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/artimimpi?q=${query}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/artinama', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  query = req.query.search
+  if(!query) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/artinama?nama=${query}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/neonime', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  query = req.query.search
+  if(!query) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/neonime_search?q=boruto${query}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/maker/barcode', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const text = req.query.text;
+  if(!text) return res.json(loghandler.nottext)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/barcode_maker?text=${text}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/barcode.jpeg', data)
+        res.sendFile(__path+'/tmp/barcode.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/maker/qrcode', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const text = req.query.text;
+  if(!text) return res.json(loghandler.nottext)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/qrcode?text=${text}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/qrcode.jpeg', data)
+        res.sendFile(__path+'/tmp/qrcode.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/anime/loli', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://docs-jojo.herokuapp.com/api/randomloli`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/loli.jpeg', data)
+        res.sendFile(__path+'/tmp/loli.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/bucin', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/katacinta`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+router.get('/jadwaltv', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  query = req.query.search
+  if(!query) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter channel"})
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/jadwaltv?ch=${query}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
+
 
 
 
