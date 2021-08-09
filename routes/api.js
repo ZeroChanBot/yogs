@@ -1142,8 +1142,8 @@ router.get('/cyber', async (req, res, next) => {
     const Cyber = cyber[Math.floor(Math.random() * cyber.length)];
     let hasil = Cyber.cyber;
     data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/cyber.mp4', data)
-    res.sendFile(__path +'/tmp/cyber.mp4')
+    await fs.writeFileSync(__path +'/tmp/cyber.jpeg', data)
+    res.sendFile(__path +'/tmp/cyber.jpeg')
   } else {
     res.json(loghandler.invalidKey)
   }
@@ -1157,8 +1157,8 @@ router.get('/techno', async (req, res, next) => {
     const Techno = techno[Math.floor(Math.random() * techno.length)];
     let hasil = Techno.techno;
     data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/techno.mp4', data)
-    res.sendFile(__path +'/tmp/techno.mp4')
+    await fs.writeFileSync(__path +'/tmp/techno.jpeg', data)
+    res.sendFile(__path +'/tmp/techno.jpeg')
   } else {
     res.json(loghandler.invalidKey)
   }
@@ -1172,8 +1172,8 @@ router.get('/muslim', async (req, res, next) => {
     const Muslim = muslim[Math.floor(Math.random() * muslim.length)];
     let hasil = Muslim.muslim;
     data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/muslim.mp4', data)
-    res.sendFile(__path +'/tmp/muslim.mp4')
+    await fs.writeFileSync(__path +'/tmp/muslim.jpeg', data)
+    res.sendFile(__path +'/tmp/muslim.jpeg')
   } else {
     res.json(loghandler.invalidKey)
   }
@@ -1187,8 +1187,8 @@ router.get('/progam', async (req, res, next) => {
     const Progam = progam[Math.floor(Math.random() * progam.length)];
     let hasil = Progam.progam;
     data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/progam.mp4', data)
-    res.sendFile(__path +'/tmp/progam.mp4')
+    await fs.writeFileSync(__path +'/tmp/progam.jpeg', data)
+    res.sendFile(__path +'/tmp/progam.jpeg')
   } else {
     res.json(loghandler.invalidKey)
   }
@@ -1202,8 +1202,8 @@ router.get('/gunung', async (req, res, next) => {
     const Gunung = gunung[Math.floor(Math.random() * gunung.length)];
     let hasil = Gunung.gunung;
     data = await fetch(hasil).then(v => v.buffer())
-    await fs.writeFileSync(__path +'/tmp/gunung.mp4', data)
-    res.sendFile(__path +'/tmp/gunung.mp4')
+    await fs.writeFileSync(__path +'/tmp/gunung.jpeg', data)
+    res.sendFile(__path +'/tmp/gunung.jpeg')
   } else {
     res.json(loghandler.invalidKey)
   }
