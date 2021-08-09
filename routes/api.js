@@ -468,22 +468,19 @@ router.get('/stalk/ig', async(req, res, next) => {
   if(!username) return res.json(loghandler.notusername)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-  igStalk(username)
-    .then((result) => {
-      res.json({
-        status : true,
-        code: 200,
-        creator : `${creator}`,
-        result
-      });
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-    } else {
-    	res.json(loghandler.invalidKey)
-    }
-});
+  fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/stalk?username=${username}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
 
 
 router.get('/stalk/npm', async (req, res, next) => {
@@ -2575,7 +2572,7 @@ router.get('/passed', async(req, res, next) => {
 });
 router.get('/meme', async(req, res, next) => {
   const apikey = req.query.apikey;
-  const text = req.query.text;
+  const text= req.query.text;
   const text2 = req.query.text2;
   const url = req.query.url;
   if(!text) return res.json(loghandler.nottext)
@@ -2583,7 +2580,7 @@ router.get('/meme', async(req, res, next) => {
   if(!url) return res.json(loghandler.noturl)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-  let hasil = `https://api.memegen.link/images/custom/${text1}/${text2}.png?background=${url}`
+  let hasil = `https://api.memegen.link/images/custom/${text}/${text2}.png?background=${url}`
   data = await fetch(hasil).then(v => v.buffer())
          await fs.writeFileSync(__path +'/tmp/meme.jpeg', data)
         res.sendFile(__path+'/tmp/meme.jpeg')
