@@ -415,17 +415,12 @@ router.get('/download/fb', async (req, res, next) => {
 	if(listkey.includes(Apikey)){
     if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
-       FB(url)
-       .then((data) => {
-         res.json({
-           status: true,
-           code: 200,
-           creator: `${creator}`,
-           title: data.title,
-           desc: data.deskripsi,
-           durasi: data.durasi,
-           thumb: data.thumbnail,
-           result: data.hd
+       fetch(encodeURI(`https://fb-api-zhirrr.vercel.app/?url=${url}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+          res.json({
+          result
          })
        });
 } else {
@@ -1112,7 +1107,7 @@ router.get('/search/image', async(req, res, next) => {
   if(listkey.includes(apikey)){
     try {
         var options = {
-            url: `http://results.dogpile.com/serp?qc=images&q=${query}`,
+            url: `https://api-indonesia-devolopers.herokuapp.com/googleimg/?q=${query}`,
             method: "GET",
             headers: {
                 "Accept": "text/html",
@@ -1139,7 +1134,7 @@ router.get('/search/image', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 })
-router.get('/wallpaper/cyberspace', async (req, res, next) => {
+router.get('/cyberspace', async (req, res, next) => {
         var Apikey = req.query.apikey
             
 	if(!Apikey) return res.json(loghandler.notparam)
@@ -1156,7 +1151,7 @@ res.json(loghandler.invalidKey)
 })
 
 
-router.get('/wallpaper/teknologi', async (req, res, next) => {
+router.get('/teknologi', async (req, res, next) => {
         const Apikey = req.query.apikey;
 	if(!Apikey) return res.json(loghandler.notparam)
 	if(listkey.includes(Apikey)){
@@ -1173,7 +1168,7 @@ res.json(loghandler.invalidKey)
 })
 
 
-router.get('/wallpaper/muslim', async (req, res, next) => {
+router.get('/muslim', async (req, res, next) => {
         var Apikey = req.query.apikey
             
 	if(!Apikey) return res.json(loghandler.notparam)
@@ -1190,7 +1185,7 @@ res.json(loghandler.invalidKey)
 })
 
 
-router.get('/wallpaper/programming', async (req, res, next) => {
+router.get('/programming', async (req, res, next) => {
         var Apikey = req.query.apikey
             
 	if(!Apikey) return res.json(loghandler.notparam)
@@ -1207,7 +1202,7 @@ res.json(loghandler.invalidKey)
 })
 
 
-router.get('/wallpaper/pegunungan', async (req, res, next) => {
+router.get('/pegunungan', async (req, res, next) => {
         var Apikey = req.query.apikey
             
 	if(!Apikey) return res.json(loghandler.notparam)
@@ -1861,7 +1856,6 @@ router.get("/photooxy/message-under-grass", async(req, res, next) => {
     	res.json(loghandler.invalidKey)
     }
 });
-
 router.get("/photooxy/glitch", async(req, res, next) => {
   const text1 = req.query.text1;
   const text2 = req.query.text2;
