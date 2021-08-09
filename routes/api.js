@@ -514,8 +514,7 @@ router.get('/random/quotes', async (req, res, next) => {
             
 	if(!Apikey) return res.json(loghandler.notparam)
 	if(listkey.includes(Apikey)){
-
-       fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/random/quotes`))
+       fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/randomquotes`))
         .then(response => response.json())
         .then(data => {
         var result = data;
