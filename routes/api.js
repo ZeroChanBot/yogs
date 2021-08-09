@@ -1793,27 +1793,28 @@ router.get("/photooxy/smoke", async(req, res, next) => {
 });
 
 router.get("/photooxy/burn-papper", async(req, res, next) => {
+  const text1 = req.query.text;
   const apikey = req.query.apikey;
-  const text = req.query.text;
-  if(!text) return res.json(loghandler.nottext)
+  if(!text1) return res.json(loghandler.nottext1)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-  fetch(encodeURI(`https://yog-ganz.herokuapp.com/api/textmaker/random?text=${text}&theme=text-burn&apikey=YogGanz`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-             	author: 'Yogga',
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.invalidKey)
-})
-} else {
-res.json(loghandler.invalidKey)
-}
-})
+  pBurnPapper(text1)
+    .then((data) => {
+      const result = {
+        status: true,
+        code: 200,
+        creator: `${creator}`,
+        result: data.url
+      }
+      res.json(result)
+    })
+    .catch((error) => {
+      res.json(error)
+    });
+    } else {
+    	res.json(loghandler.invalidKey)
+    }
+});
 
 router.get("/photooxy/naruto", async(req, res, next) => {
   const text1 = req.query.text;
