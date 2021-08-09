@@ -507,7 +507,27 @@ router.get('/stalk/npm', async (req, res, next) => {
 res.json(loghandler.invalidKey)
 }
 })
-
+router.get('/random/wallpaper', async (req, res, next) => {
+        var Apikey = req.query.apikey
+            
+	if(!Apikey) return res.json(loghandler.notparam)
+	if(listkey.includes(Apikey)){
+       fetch(encodeURI(`https://api-indonesia-devolopers.herokuapp.com/random/wallpaper`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 creator : `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
 
 router.get('/random/quotes', async (req, res, next) => {
         var Apikey = req.query.apikey
@@ -531,6 +551,27 @@ res.json(loghandler.invalidKey)
 }
 })
 
+router.get('/random/quotes/kanye', async (req, res, next) => {
+        var Apikey = req.query.apikey
+            
+	if(!Apikey) return res.json(loghandler.notparam)
+	if(listkey.includes(Apikey)){
+       fetch(encodeURI(`https://api-indonesia-devolopers.herokuapp.com/quotes/kanye`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 creator : `${creator}`,
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
 
 router.get('/jadwal-bioskop', async(req, res, next) => {
 var Apikey = req.query.apikey
@@ -1750,30 +1791,51 @@ router.get("/photooxy/smoke", async(req, res, next) => {
     	res.json(loghandler.invalidKey)
     }
 });
-
 router.get("/photooxy/burn-papper", async(req, res, next) => {
-  const text1 = req.query.text;
-  const apikey = req.query.apikey;
-  if(!text1) return res.json(loghandler.nottext1)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)){
-  pBurnPapper(text1)
-    .then((data) => {
-      const result = {
-        status: true,
-        code: 200,
-        creator: `${creator}`,
-        result: data.url
-      }
-      res.json(result)
-    })
-    .catch((error) => {
-      res.json(error)
-    });
-    } else {
-    	res.json(loghandler.invalidKey)
-    }
-});
+        var theme = req.query.theme,
+             text = req.query.text,
+             apikeyInput = req.query.apikey;
+        
+	    if(!apikey) return res.json(loghandler.notparam)
+        if(listkey.includes(apikey)){
+        if (!theme) return res.json(loghandler.nottheme)
+        if (theme != 'text-burn' && theme != 'art-quote') return res.json(loghandler.notheme)
+        if (!text) return res.json(loghandler.nottext)
+
+        if (theme == 'text-burn') {
+            try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/write-text-on-burn-paper-388.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            result:{
+                                                url:urlnya
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                })
+                } catch (e) {
+                	console.log(e);
+                res.json(loghandler.error)
+                }
 
 router.get("/photooxy/naruto", async(req, res, next) => {
   const text1 = req.query.text;
