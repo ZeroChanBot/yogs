@@ -1140,7 +1140,7 @@ router.get('/cyberspace', async (req, res, next) => {
 	if(!Apikey) return res.json(loghandler.notparam)
 	if(listkey.includes(Apikey)){
 
-  Cc = JSON.parse(fs.readFileSync(__path +'/data/CyberSpace.json'));
+  const Cc = JSON.parse(fs.readFileSync(__path +'/data/CyberSpace.json'));
   const randCc = Cc[Math.floor(Math.random() * Cc.length)]
   data = await fetch(randCc).then(v => v.buffer())
   await fs.writeFileSync(__path +'/tmp/CyberSpace.jpeg', data)
