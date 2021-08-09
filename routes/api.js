@@ -2596,9 +2596,9 @@ router.get('/asupan/bokep', async (req, res, next) => {
   Apikey = req.query.apikey;
   if(!Apikey) return res.json(loghandler.notparam)
   if(listkey.includes(Apikey)) {
-    const ken = ['https://telegra.ph/file/7d7c3abc0300a502b6ddc.mp4','https://telegra.ph/file/47d99b1766277fe7f3561.mp4','https://telegra.ph/file/93f92ae34fe0ac177e31d.mp4','https://telegra.ph/file/356055da67744deed290a.mp4','https://telegra.ph/file/8c76164328248b71ba7e4.mp4','https://telegra.ph/file/ece7a2ef720d08d9f52d1.mp4','https://telegra.ph/file/b9efc0dc7153593a1ea4b.mp4','https://telegra.ph/file/9141f06394a07d71dfd4c.mp4','https://telegra.ph/file/e4903cf5a2056953c266e.mp4','https://telegra.ph/file/4ae639be8740431780c73.mp4','https://telegra.ph/file/a6d50bba2d05c0c08a585.mp4','https://telegra.ph/file/db75cf4815f6445400a00.mp4','https://telegra.ph/file/0ad246d4db1f1cf5d61d0.mp4','https://telegra.ph/file/e660a2776c4b6700c4883.mp4','https://telegra.ph/file/acdf3147dd3bc73802b90.mp4','https://telegra.ph/file/532274df4749fa2582765.mp4']
-    const ntu = ken[Math.floor(Math.random() * (ken.length))]
-    let hasil = ntu.ken;
+    const tu = JSON.parse(fs.readFileSync(__path +'/data/bokep.json'));
+    const Ken = tu[Math.floor(Math.random() * tu.length)];
+    let hasil = Ken.tu;
     data = await fetch(hasil).then(v => v.buffer())
     await fs.writeFileSync(__path +'/tmp/bokep.mp4', data)
     res.sendFile(__path +'/tmp/bokep.mp4')
@@ -2606,6 +2606,7 @@ router.get('/asupan/bokep', async (req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
+
 
 
 
