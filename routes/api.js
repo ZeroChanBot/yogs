@@ -465,10 +465,11 @@ res.json(loghandler.invalidKey)
 router.get('/stalk/ig', async(req, res, next) => {
   const username = req.query.username;
   const apikey = req.query.apikey;
-  if(!username) return res.json(loghandler.notusername)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-  fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/stalk?username=${username}`))
+  if (!username) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter username"})
+
+       fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/stalk?username=${username}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
