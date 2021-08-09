@@ -2878,6 +2878,26 @@ router.get('/jadwaltv', async(req, res, next) => {
 res.json(loghandler.invalidKey)
 }
 })
+router.get('/jadwaltvnow', async(req, res, next) => {
+  Apikey = req.query.apikey;
+  if(!Apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(Apikey)) {
+    fetch(encodeURI(`https://docs-jojo.herokuapp.com/api/jadwaltvnow`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Yogga',
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.invalidKey)
+})
+} else {
+res.json(loghandler.invalidKey)
+}
+})
 
 
 
