@@ -8,7 +8,7 @@ var zahirr = db.get("zahirr");
 	console.log('')  
 }
  
-var creator = "Yogga Adhie"
+var creator = "Raku Gans"
 var secure = require('ssl-express-www');
 var cors = require('cors');
 var fetch = require('node-fetch');
@@ -165,7 +165,7 @@ loghandler = {
     error: {
         status: false,
         creator: `${creator}`,
-        message: 'error gan'
+        message: 'error kack'
     }
 }
 
@@ -175,7 +175,7 @@ Akhir Pesan Error
 
 router.use(favicon(__path + "/views/favicon.ico"));
 
-const listkey = ["YogGanz", "Fxc7"];
+const listkey = ["meta", "zerobot"];
 
 router.post("/addapikey", async (req, res, next) => {
   const key = req.query.key;
@@ -307,7 +307,7 @@ router.get("/yt/playmp3", async(req, res, next) => {
     if(listkey.includes(apikey)){
     ytPlayMp3(query)
         .then((result) => {
-            res.json(result);
+  .           res.json(result);
         })
         .catch((error) => {
             res.json(error);
